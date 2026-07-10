@@ -71,7 +71,7 @@ h1,h2,h3,h4,.display{font-family:Tahoma,Geneva,sans-serif;font-weight:600;letter
   font-size:12px;color:var(--blue);margin-bottom:14px;
 }
 .eyebrow::before{content:"";width:26px;height:3px;background:var(--orange);border-radius:2px}
-.page-title{font-size:clamp(30px,5vw,52px);color:var(--navy);text-transform:uppercase;margin-bottom:10px}
+.page-title{font-size:clamp(24px,3.8vw,40px);color:var(--navy);text-transform:uppercase;margin-bottom:10px}
 .page-sub{color:var(--muted);font-size:clamp(15px,2vw,18px);max-width:720px;margin-bottom:38px}
 
 /* ===== HOME ===== */
@@ -119,7 +119,7 @@ h1,h2,h3,h4,.display{font-family:Tahoma,Geneva,sans-serif;font-weight:600;letter
 .chip.own{background:rgba(0,85,184,.08);border-color:rgba(0,85,184,.25);color:var(--blue)}
 
 /* ===== STATS ===== */
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:38px}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:38px}
 .kpi{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
 .kpi::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--orange))}
 .kpi .k-num{font-family:Tahoma,Geneva,sans-serif;font-weight:700;font-size:38px;color:var(--navy);line-height:1}
@@ -150,29 +150,43 @@ h1,h2,h3,h4,.display{font-family:Tahoma,Geneva,sans-serif;font-weight:600;letter
 .tbl .neg{color:#D93636;font-weight:600}
 .tbl .neu{color:var(--muted);font-weight:600}
 
-/* ===== PIPELINE ===== */
-.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:30px;align-items:stretch}
-.pstage{position:relative;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 16px;box-shadow:var(--shadow);z-index:2}
-.pstage .p-ico{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue-2));display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
-.pstage:nth-child(4) .p-ico,.pstage:nth-child(7) .p-ico{background:linear-gradient(135deg,var(--orange),var(--orange-2))}
-.pstage .p-n{font-family:Tahoma,Geneva,sans-serif;font-size:12px;letter-spacing:1px;color:var(--orange);text-transform:uppercase}
-.pstage h4{font-size:16px;color:var(--navy);text-transform:uppercase;margin:3px 0 8px}
-.pstage p{font-size:12.5px;color:var(--muted);line-height:1.45}
-.pstage .tech{margin-top:10px;font-family:Tahoma,Geneva,sans-serif;font-size:11px;color:var(--blue);background:var(--paper);border-radius:6px;padding:5px 8px;display:inline-block}
-.parrow{display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:24px;z-index:1}
+/* ===== PIPELINE (используется на странице «Выводы») ===== */
 .pipe-detail{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
 .pd-card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
 .pd-card h4{font-size:15px;color:var(--navy);text-transform:uppercase;margin-bottom:10px;display:flex;gap:9px;align-items:center}
-.pd-card h4 . dot{width:8px;height:8px;border-radius:50%}
 .pd-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
 .pd-card li{font-size:13px;color:var(--muted);padding-left:20px;position:relative}
 .pd-card li::before{content:"→";position:absolute;left:0;color:var(--orange);font-weight:700}
-.codebox{background:var(--navy);border-radius:14px;padding:22px;margin-top:22px;box-shadow:var(--shadow);overflow-x:auto}
-.codebox pre{font-family:Tahoma,Geneva,sans-serif;font-size:13px;color:#D6E0F0;line-height:1.7}
-.codebox .cm{color:#7C93B8}
-.codebox .kw{color:var(--orange-2)}
-.codebox .st{color:#8FD694}
-.codebox .fn{color:#6FB4F5}
+
+/* ===== АРХИТЕКТУРА: блок-схема из 10 шагов (переиспользует .road/.rstep из дорожной карты) ===== */
+.af-road{margin-bottom:36px}
+.af-road .rcard{padding-bottom:22px}
+.af-bullets{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.af-bullets li{font-size:13.5px;color:var(--muted);line-height:1.5;padding-left:18px;position:relative}
+.af-bullets li::before{content:"—";position:absolute;left:0;color:var(--blue)}
+.af-example{display:inline-block;margin-left:6px;font-family:Tahoma,Geneva,sans-serif;font-size:12px;background:var(--paper);border-radius:6px;padding:4px 9px;color:var(--navy)}
+.af-why{margin-left:6px;font-size:12px;font-weight:700;color:var(--orange);text-decoration:underline;cursor:pointer;white-space:nowrap}
+.af-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--muted)}
+.af-meta b{color:var(--navy)}
+
+.prompt-wrap{margin-top:14px}
+.prompt-code{position:relative;background:var(--navy);color:#DCE6FB;border-radius:10px;padding:14px 16px;overflow:hidden}
+.prompt-code pre{font-family:Tahoma,Geneva,sans-serif;font-size:11.5px;line-height:1.65;white-space:pre-wrap;word-break:break-word;margin:0}
+.prompt-code.collapsed{max-height:52px}
+.prompt-code.collapsed::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(transparent,var(--navy))}
+.prompt-toggle{display:inline-block;margin-top:8px;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer}
+.prompt-toggle:hover{text-decoration:underline}
+
+/* ===== АРХИТЕКТУРА: таблица сравнения LLM ===== */
+.llm-table-title{font-size:22px;color:var(--navy);text-transform:uppercase;margin-bottom:6px;scroll-margin-top:90px}
+.table-scroll{overflow-x:auto;margin-top:10px;border-radius:12px;box-shadow:var(--shadow)}
+.llm-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:900px;background:var(--white)}
+.llm-table th,.llm-table td{padding:11px 13px;border:1px solid var(--line);vertical-align:top;text-align:left}
+.llm-table thead th{background:var(--navy);color:#fff;text-transform:uppercase;font-size:11px;letter-spacing:.5px}
+.llm-table tbody th{background:var(--paper);color:var(--navy);font-weight:700;white-space:nowrap}
+.llm-table td{color:var(--muted);line-height:1.5}
+.llm-table td.chosen,.llm-table th.chosen{background:rgba(18,161,80,.1)}
+.llm-table thead th.chosen{background:var(--good)}
 
 /* ===== PRODUCT MOCK ===== */
 .mock{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
@@ -249,6 +263,9 @@ h1,h2,h3,h4,.display{font-family:Tahoma,Geneva,sans-serif;font-weight:600;letter
 .wf-bar{width:100%;border-radius:8px 8px 0 0;min-height:6px;transition:height 1s ease;position:relative}
 .wf-bar .wf-v{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-family:Tahoma,Geneva,sans-serif;font-size:12px;font-weight:700;color:var(--navy);white-space:nowrap}
 .wf-lab{font-size:11.5px;color:var(--muted);text-align:center;font-weight:600}
+#ratingHist{gap:6px}
+#ratingHist .wf-lab{font-size:10px;font-weight:500}
+.chart-axis{font-size:11.5px;color:var(--muted);text-align:center;margin-top:10px}
 .assum{list-style:none;display:flex;flex-direction:column;gap:12px}
 .assum li{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding-bottom:11px;border-bottom:1px solid var(--paper-2)}
 .assum li span{color:var(--muted)}
@@ -265,8 +282,6 @@ footer b{color:var(--orange)}
   .team-cards{grid-template-columns:repeat(3,1fr)}
   .kpi-grid,.fin-grid{grid-template-columns:repeat(2,1fr)}
   .chart-row,.fin-main{grid-template-columns:1fr}
-  .pipe{grid-template-columns:1fr}
-  .parrow{transform:rotate(90deg);margin:6px 0}
   .pipe-detail{grid-template-columns:1fr}
 }
 /* навигация сворачивается в бургер раньше, чтобы не налезать на логотип */
@@ -310,11 +325,12 @@ footer b{color:var(--orange)}
   <button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
   <nav class="nav" id="nav">
     <button data-i="0" class="active" onclick="go(0)"><span class="n">01</span>Главная</button>
-    <button data-i="1" onclick="go(1)"><span class="n">02</span>Дорожная карта</button>
-    <button data-i="2" onclick="go(2)"><span class="n">03</span>Данные</button>
-    <button data-i="3" onclick="go(3)"><span class="n">04</span>Пайплайн</button>
+    <button data-i="1" onclick="go(1)"><span class="n">02</span>Описание кейса</button>
+    <button data-i="2" onclick="go(2)"><span class="n">03</span>EDA</button>
+    <button data-i="3" onclick="go(3)"><span class="n">04</span>Архитектура решения</button>
     <button data-i="4" onclick="location.href='catalog'"><span class="n">05</span>Прототип</button>
-    <button data-i="5" onclick="go(5)"><span class="n">06</span>Финмодель</button>
+    <button data-i="5" onclick="go(5)"><span class="n">06</span>Эффекты от внедрения</button>
+    <button data-i="6" onclick="go(6)"><span class="n">07</span>Выводы</button>
   </nav>
 </div>
 
@@ -415,13 +431,15 @@ footer b{color:var(--orange)}
 <section class="page" id="p2">
   <div class="eyebrow">Что в данных</div>
   <h2 class="page-title">Описательная статистика</h2>
-  <p class="page-sub">Реальный датасет кейса: 9 011 товаров (кроссовки, кеды, куртки) с агрегированными отзывами покупателей Спортмастера. Цифры посчитаны по факту после очистки и нормализации.</p>
+  <p class="page-sub">Исходный датасет: 9 011 товаров (кроссовки, кеды, куртки).</p>
 
   <div class="kpi-grid">
-    <div class="kpi"><div class="k-num">86,4<small> тыс</small></div><div class="k-label">Отзывов после очистки</div><div class="k-trend">из 9 011 моделей товаров</div></div>
-    <div class="kpi"><div class="k-num">9<small> 011</small></div><div class="k-label">Товаров с отзывами</div><div class="k-trend">медиана 3 отзыва на товар</div></div>
-    <div class="kpi"><div class="k-num">4,40<small>★</small></div><div class="k-label">Средний рейтинг товара</div><div class="k-trend">медиана 4,8</div></div>
-    <div class="kpi"><div class="k-num">1 222<small> зн.</small></div><div class="k-label">Длина отзыва (все поля)</div><div class="k-trend">медиана 434 · отзыв + плюсы + минусы</div></div>
+    <div class="kpi"><div class="k-num">86,4<small> тыс</small></div><div class="k-label">Отзывов</div><div class="k-trend">После очистки</div></div>
+    <div class="kpi"><div class="k-num">9<small> 011</small></div><div class="k-label">Товаров</div><div class="k-trend">С отзывами</div></div>
+    <div class="kpi"><div class="k-num">9,59</div><div class="k-label">Среднее число отзывов</div><div class="k-trend">На товар</div></div>
+    <div class="kpi"><div class="k-num">3<small> 036</small></div><div class="k-label">Товаров</div><div class="k-trend">С ≥6 отзывов</div></div>
+    <div class="kpi"><div class="k-num">169<small> слов</small></div><div class="k-label">Длина отзыва (все поля)</div><div class="k-trend">Медиана 61 · отзыв + плюсы + минусы</div></div>
+    <div class="kpi"><div class="k-num">4,40<small>★</small></div><div class="k-label">Средний рейтинг товара</div></div>
   </div>
 
   <div class="chart-row">
@@ -435,8 +453,23 @@ footer b{color:var(--orange)}
       </div>
     </div>
     <div class="panel">
+      <h3>Суммарная длина отзыва (общий + достоинства + недостатки)</h3>
+      <p class="p-sub">Распределение по 9 011 моделям, слов суммарно по всем трём полям — среднее 169, медиана 61</p>
+      <div class="bar-chart">
+        <div class="bar-item"><span class="b-lab">&lt; 20 слов</span><div class="bar-track"><div class="bar-fill" data-w="100"></div></div><span class="b-val">24,2%</span></div>
+        <div class="bar-item"><span class="b-lab">20–50 слов</span><div class="bar-track"><div class="bar-fill" data-w="86"></div></div><span class="b-val">20,9%</span></div>
+        <div class="bar-item"><span class="b-lab">50–100 слов</span><div class="bar-track"><div class="bar-fill" data-w="71"></div></div><span class="b-val">17,2%</span></div>
+        <div class="bar-item"><span class="b-lab">100–200 слов</span><div class="bar-track"><div class="bar-fill" data-w="62"></div></div><span class="b-val">15,0%</span></div>
+        <div class="bar-item"><span class="b-lab">200–500 слов</span><div class="bar-track"><div class="bar-fill" data-w="58"></div></div><span class="b-val">14,2%</span></div>
+        <div class="bar-item"><span class="b-lab">500+ слов</span><div class="bar-track"><div class="bar-fill" data-w="35"></div></div><span class="b-val">8,5%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="panel">
       <h3>Тональность</h3>
-      <p class="p-sub">Прокси через рейтинг товара: ⩾4★ — позитив, 3–4★ — нейтрально, &lt;3★ — негатив (точный подсчёт по 9 011 моделям)</p>
+      <p class="p-sub">⩾4★ — позитив, 3–4★ — нейтрально, &lt;3★ — негатив (точный подсчёт по 9 011 моделям)</p>
       <div class="donut-wrap">
         <svg width="150" height="150" viewBox="0 0 42 42">
           <circle cx="21" cy="21" r="15.9" fill="none" stroke="#EDF1F8" stroke-width="6"/>
@@ -453,99 +486,355 @@ footer b{color:var(--orange)}
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="chart-row">
     <div class="panel">
       <h3>Распределение рейтинга товаров</h3>
       <p class="p-sub">Непрерывная гистограмма среднего рейтинга по 9 011 моделям, шаг 0,4★ — выраженный перекос вправо</p>
-      <div class="bar-chart">
-        <div class="bar-item"><span class="b-lab">1,0–1,4</span><div class="bar-track"><div class="bar-fill" data-w="4" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">2,5%</span></div>
-        <div class="bar-item"><span class="b-lab">1,4–1,8</span><div class="bar-track"><div class="bar-fill" data-w="1" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">0,5%</span></div>
-        <div class="bar-item"><span class="b-lab">1,8–2,2</span><div class="bar-track"><div class="bar-fill" data-w="3" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">1,7%</span></div>
-        <div class="bar-item"><span class="b-lab">2,2–2,6</span><div class="bar-track"><div class="bar-fill" data-w="1" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">0,8%</span></div>
-        <div class="bar-item"><span class="b-lab">2,6–3,0</span><div class="bar-track"><div class="bar-fill" data-w="1" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">0,9%</span></div>
-        <div class="bar-item"><span class="b-lab">3,0–3,4</span><div class="bar-track"><div class="bar-fill" data-w="10" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">5,8%</span></div>
-        <div class="bar-item"><span class="b-lab">3,4–3,8</span><div class="bar-track"><div class="bar-fill" data-w="8" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">4,6%</span></div>
-        <div class="bar-item"><span class="b-lab">3,8–4,2</span><div class="bar-track"><div class="bar-fill" data-w="17" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">10,2%</span></div>
-        <div class="bar-item"><span class="b-lab">4,2–4,6</span><div class="bar-track"><div class="bar-fill" data-w="21" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">12,7%</span></div>
-        <div class="bar-item"><span class="b-lab">4,6–5,0</span><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,#FF0016,#ff3945)"></div></div><span class="b-val">60,4%</span></div>
+      <div class="waterfall" id="ratingHist" style="height:200px">
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="4"><span class="wf-v">2,5%</span></div><div class="wf-lab">1,0–1,4</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="1"><span class="wf-v">0,5%</span></div><div class="wf-lab">1,4–1,8</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="3"><span class="wf-v">1,7%</span></div><div class="wf-lab">1,8–2,2</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="1"><span class="wf-v">0,8%</span></div><div class="wf-lab">2,2–2,6</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="1"><span class="wf-v">0,9%</span></div><div class="wf-lab">2,6–3,0</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="10"><span class="wf-v">5,8%</span></div><div class="wf-lab">3,0–3,4</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="8"><span class="wf-v">4,6%</span></div><div class="wf-lab">3,4–3,8</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="17"><span class="wf-v">10,2%</span></div><div class="wf-lab">3,8–4,2</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="21"><span class="wf-v">12,7%</span></div><div class="wf-lab">4,2–4,6</div></div>
+        <div class="wf-col"><div class="wf-bar" style="background:linear-gradient(#FF0016,#ff3945)" data-h="100"><span class="wf-v">60,4%</span></div><div class="wf-lab">4,6–5,0</div></div>
       </div>
-    </div>
-    <div class="panel">
-      <h3>Топ-аспекты в отзывах</h3>
-      <p class="p-sub">Реальная частота ключевых слов по 85 003 отзывам с текстом (частотный keyword-анализ по живой БД, не LLM-разметка)</p>
-      <table class="tbl">
-        <thead><tr><th>Аспект</th><th>Доля упоминаний</th></tr></thead>
-        <tbody>
-          <tr><td>Удобство</td><td>26,0%</td></tr>
-          <tr><td>Внешний вид</td><td>12,7%</td></tr>
-          <tr><td>Качество</td><td>10,7%</td></tr>
-          <tr><td>Размер / посадка</td><td>7,1%</td></tr>
-          <tr><td>Тепло / утепление</td><td>5,7%</td></tr>
-          <tr><td>Цена</td><td>4,8%</td></tr>
-          <tr><td>Долговечность</td><td>0,7%</td></tr>
-        </tbody>
-      </table>
+      <p class="chart-axis">Ось X — оценка товара, ось Y — доля моделей</p>
     </div>
   </div>
 
   <div class="disclaimer">📌 <b>Почему это критично для AI-summary:</b> 82,3% моделей имеют рейтинг ⩾4★, и только 6,3% — ниже 3★. Но психологические исследования показывают, что негативная информация «весит» для восприятия сильнее положительной — эффект <i>negativity bias</i>, «bad is stronger than good» (Baumeister et al.). Покупатели целенаправленно ищут единичные отрицательные отзывы перед покупкой, даже когда позитив в явном большинстве. AI-summary не имеет права «размывать» редкий, но content-rich негатив общим позитивным фоном — иначе саммари будет восприниматься как нечестное. Источники: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6132407/" target="_blank" rel="noopener">Rethinking the Negativity Bias (NIH / PMC)</a>, <a href="https://biz.source.colostate.edu/negative-online-reviews-impact-study/" target="_blank" rel="noopener">Colorado State University — Why negative reviews impact customers more</a>.</div>
 
   <div class="panel">
-    <h3>Суммарная длина отзыва (общий + достоинства + недостатки)</h3>
-    <p class="p-sub">Распределение по 9 011 моделям, знаков суммарно по всем трём полям — среднее 1 222 зн., медиана 434 зн.</p>
-    <div class="bar-chart">
-      <div class="bar-item"><span class="b-lab">&lt; 200 зн.</span><div class="bar-track"><div class="bar-fill" data-w="100"></div></div><span class="b-val">31,6%</span></div>
-      <div class="bar-item"><span class="b-lab">200–500 зн.</span><div class="bar-track"><div class="bar-fill" data-w="69"></div></div><span class="b-val">21,9%</span></div>
-      <div class="bar-item"><span class="b-lab">500–1000 зн.</span><div class="bar-track"><div class="bar-fill" data-w="52"></div></div><span class="b-val">16,4%</span></div>
-      <div class="bar-item"><span class="b-lab">1000–2000 зн.</span><div class="bar-track"><div class="bar-fill" data-w="44"></div></div><span class="b-val">13,8%</span></div>
-      <div class="bar-item"><span class="b-lab">2000–5000 зн.</span><div class="bar-track"><div class="bar-fill" data-w="36"></div></div><span class="b-val">11,3%</span></div>
-      <div class="bar-item"><span class="b-lab">5000+ зн.</span><div class="bar-track"><div class="bar-fill" data-w="16"></div></div><span class="b-val">5,0%</span></div>
-    </div>
+    <h3>Топ-аспекты в отзывах</h3>
+    <p class="p-sub">Частота ключевых слов по 85 003 отзывам.</p>
+    <table class="tbl">
+      <thead><tr><th>Аспект</th><th>Доля упоминаний</th></tr></thead>
+      <tbody>
+        <tr><td>Удобство</td><td>26,0%</td></tr>
+        <tr><td>Внешний вид</td><td>12,7%</td></tr>
+        <tr><td>Качество</td><td>10,7%</td></tr>
+        <tr><td>Размер / посадка</td><td>7,1%</td></tr>
+        <tr><td>Тепло / утепление</td><td>5,7%</td></tr>
+        <tr><td>Цена</td><td>4,8%</td></tr>
+        <tr><td>Долговечность</td><td>0,7%</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- ================= 4. PIPELINE ================= -->
+<!-- ================= 4. ARCHITECTURE ================= -->
 <section class="page" id="p3">
   <div class="eyebrow">Как устроено решение</div>
-  <h2 class="page-title">Пайплайн работы с данными</h2>
-  <p class="page-sub">От сырых отзывов до готового AI-summary на карточке. Модульная архитектура: каждый блок можно заменить или дообучить независимо.</p>
+  <h2 class="page-title">Архитектура решения</h2>
+  <p class="page-sub">Путь одного отзыва от формы на сайте до строчки в AI-сводке — реальный пайплайн, без упрощений: те же шаги, что выполняет код.</p>
 
-  <div class="pipe">
-    <div class="pstage"><div class="p-ico">🗄️</div><div class="p-n">Шаг 01</div><h4>Сбор</h4><p>Выгрузка отзывов из внутренней БД и модерации по товарам.</p><span class="tech">SQL · API</span></div>
-    <div class="parrow">→</div>
-    <div class="pstage"><div class="p-ico">🧹</div><div class="p-n">Шаг 02</div><h4>Очистка</h4><p>Дедупликация, фильтр спама, нормализация текста, язык.</p><span class="tech">Pandas · regex</span></div>
-    <div class="parrow">→</div>
-    <div class="pstage"><div class="p-ico">🔍</div><div class="p-n">Шаг 03</div><h4>Анализ</h4><p>Sentiment + выделение аспектов по каждому отзыву.</p><span class="tech">NLP · ABSA</span></div>
-    <div class="parrow">→</div>
-    <div class="pstage"><div class="p-ico">✦</div><div class="p-n">Шаг 04</div><h4>Генерация</h4><p>LLM собирает саммари, плюсы/минусы, теги аспектов.</p><span class="tech">LLM · few-shot</span></div>
-    <div class="parrow">→</div>
-    <div class="pstage"><div class="p-ico">🛒</div><div class="p-n">Шаг 05</div><h4>Выдача</h4><p>Кэш саммари, обновление на карточке товара.</p><span class="tech">Cache · CDN</span></div>
+  <div class="road af-road">
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">1</span></div></div>
+      <div class="rcard"><h3>Добавление нового отзыва на товар на сайте магазина <span class="phase">Frontend</span></h3>
+        <p>Покупатель заполняет форму на карточке товара: оценка, комментарий, необязательные достоинства/недостатки и имя.</p>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">2</span></div></div>
+      <div class="rcard"><h3>Запись в БД <span class="phase">MySQL</span></h3>
+        <p>Отзыв сохраняется целиком, ничего не теряется:</p>
+        <ul class="af-bullets">
+          <li>присвоение id отзыву</li>
+          <li>комментарий</li>
+          <li>достоинства</li>
+          <li>недостатки</li>
+          <li>оценка</li>
+          <li>имя пользователя</li>
+        </ul>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">3</span></div></div>
+      <div class="rcard"><h3>Проверка условий <span class="phase">Backend</span></h3>
+        <p>Решение, нужно ли вообще тратить вызов LLM на пересчёт сводки:</p>
+        <ul class="af-bullets">
+          <li>обновление ИИ-сводки происходит при добавлении 20% новых отзывов</li>
+          <li>формирование ИИ-сводки происходит при наличии более 5 отзывов о товаре</li>
+          <li>при количестве отзывов больше 250 для генерации ИИ-сводки используются только последние 250</li>
+        </ul>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">4</span></div></div>
+      <div class="rcard"><h3>Предобработка данных <span class="phase">Backend</span></h3>
+        <ul class="af-bullets">
+          <li>очистка данных от «пустых» значений (none, нет и прочее)</li>
+          <li>разбивка отзывов на блоки по 20 отзывов</li>
+        </ul>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">5</span></div></div>
+      <div class="rcard"><h3>Обращение к LLM по API <span class="phase">LLM · MAP</span></h3>
+        <ul class="af-bullets">
+          <li>для каждого блока отзывов — отдельный вызов</li>
+          <li>используется модель <b>GPT OSS 20B</b> <a class="af-why" onclick="event.preventDefault();document.getElementById('llm-table').scrollIntoView({behavior:'smooth'})" href="#llm-table">Почему?</a></li>
+        </ul>
+        <div class="af-meta"><span><b>Средняя скорость генерации:</b> 11,86 с</span><span><b>Среднее кол-во входных токенов:</b> 9 тыс.</span></div>
+
+        <div class="prompt-wrap">
+          <div class="prompt-code collapsed" id="mapPrompt"><pre>MAP_SYSTEM_PROMPT = """Ты — аналитик отзывов о товарах. Тебе передают чанк отзывов покупателей.
+
+ТВОЯ ГЛАВНАЯ ЦЕЛЬ: Извлечь стандартизированные аспекты (достоинства и недостатки) и выбрать самые информативные цитаты.
+
+КРИТИЧЕСКИ ВАЖНЫЕ ПРАВИЛА:
+
+1. СТАНДАРТИЗАЦИЯ АСПЕКТОВ (Нормализация)
+- ЗАПРЕЩЕНО копировать слова пользователей дословно, если это опечатки, сленг или странные фразы (например, НЕЛЬЗЯ писать "Стальные", "Высший разряд", "Внутренняя чистота", "Дубовые").
+- Сопоставляй отзывы со стандартными категориями:
+  [Достоинства]: Удобство, Внешний вид, Качество материалов, Лёгкость, Износостойкость, Размер/Посадка, Практичность, Цена, Функциональность, Дышащие свойства.
+  [Недостатки]: Неудобство/Натирает, Низкое качество/Брак, Быстрый износ, Проблемы с размером, Маркость, Тяжёлые, Жёсткие, Плохая вентиляция/Запах, Цена.
+- Если сопоставить не получается, то ты можешь добавить свою категорию.
+
+2. ДЕДУПЛИКАЦИЯ (Запрет дублей)
+- Каждый аспект должен встречаться в списке `pros` или `cons` СТРОГО ОДИН РАЗ.
+- Если ты выделил "Удобство" и "Комфорт", объедини их в "Удобство".
+- Перед формированием JSON мысленно проверь списки на дубликаты и удали их.
+- Если аспект упоминается и как позитивный, и как негативный, то исключи его.
+
+3. ОБРАБОТКА КОРОТКИХ ОТЗЫВОВ
+- НЕ ИГНОРИРУЙ короткие отзывы (1-3 слова). Они тоже содержат данные!
+- Пример: отзыв "легкие кроссовки" -> аспект "Лёгкость". Отзыв "Стильно" -> аспект "Внешний вид".
+
+4. ПРАВИЛА ДЛЯ ЦИТАТ И ТОНАЛЬНОСТИ (Sentiment)
+- Выбери 3-5 самых ярких цитат из поля "Общее".
+- review_id бери СТРОГО из номера в начале строки отзыва. Не выдумывай ID.
+- Отсевай "мусор": "Класс", "Топ", "Норм", "Хорошие". Бери только цитаты с деталями, сценариями или яркими эмоциями.
+- ТОНАЛЬНОСТЬ: Если в отзыве упоминается КРИТИЧЕСКИЙ дефект (мозоли, разрыв, брак, ужасное качество, "ужас", "кал"), ставь sentiment: "negative", ДАЖЕ если пользователь хвалит внешний вид в том же предложении. Иначе оценивай объективно.
+
+ФОРМАТ ОТВЕТА (СТРОГО JSON, БЕЗ markdown-оберток):
+{
+  "pros": [
+    {
+      "aspect": "Удобство",
+      "keywords": ["удобные", "комфорт", "мягкие", "нога не устаёт", "как тапочки"]
+    }
+  ],
+  "cons": [
+    {
+      "aspect": "Быстрый износ",
+      "keywords": ["протерлись", "порвались", "хватило на месяц", "разошлись", "дырка"]
+    }
+  ],
+  "quotes": [
+    {"text": "Текст цитаты с деталями...", "review_id": "125", "sentiment": "negative"}
+  ]
+}
+
+Ограничения: pros — до 10 пунктов, cons — до 7 пунктов, quotes — до 5 цитат.
+"""
+
+MAP_USER_TEMPLATE = """Ниже — чанк отзывов о товаре "{product_type}" (средний рейтинг: {rating}).
+Каждый отзыв пронумерован и содержит поля "Общее", "Достоинства", "Недостатки".
+
+Проанализируй и верни JSON:
+
+--- ОТЗЫВЫ ---
+{text_for_llm}
+"""</pre></div>
+          <a class="prompt-toggle" onclick="togglePrompt('mapPrompt', this)">Раскрыть ▾</a>
+        </div>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">6</span></div></div>
+      <div class="rcard"><h3>Объединение полученной информации <span class="phase">Backend</span></h3>
+        <p>Результаты всех блоков склеиваются в одну сводную статистику по товару — с помощью Python-кода.</p>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">7</span></div></div>
+      <div class="rcard"><h3>Запись в БД <span class="phase">MySQL</span></h3>
+        <ul class="af-bullets">
+          <li>список характеристик-достоинств с подсчётом упоминаний + id отзывов <span class="af-example">удобство (3): id 1, 8, 10</span></li>
+          <li>недостатки с подсчётом упоминаний</li>
+          <li>значимые цитаты из отзывов</li>
+        </ul>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">8</span></div></div>
+      <div class="rcard"><h3>Обращение к LLM по API для генерации ИИ-сводки <span class="phase">LLM · REDUCE</span></h3>
+        <ul class="af-bullets">
+          <li>подаётся информация о недостатках, достоинствах и цитатах</li>
+          <li>используется модель <b>YandexGPT Lite</b> <a class="af-why" onclick="event.preventDefault();document.getElementById('llm-table').scrollIntoView({behavior:'smooth'})" href="#llm-table">Почему?</a></li>
+        </ul>
+        <div class="af-meta"><span><b>Средняя скорость генерации:</b> 1,7 с</span><span><b>Среднее кол-во входных токенов:</b> 2 тыс.</span></div>
+
+        <div class="prompt-wrap">
+          <div class="prompt-code collapsed" id="reducePrompt"><pre>REDUCE_SYSTEM_PROMPT = """# Промпт: генерация summary отзывов — Спортмастер
+
+## Задача
+
+Ты — AI-модуль, который помогает покупателю Спортмастера быстро понять, чего ожидать от товара в использовании, не читая все отзывы самостоятельно.
+
+На вход подаётся статистика по одному товару: топ-достоинства с частотой упоминания, топ-недостатки с частотой упоминания, несколько ярких цитат покупателей. Товар уже отобран по достаточному количеству отзывов — тебе не нужно это проверять.
+
+Твоя единственная задача — написать ai_summary: связный текст до 40 слов, который обобщает опыт покупателей. Достоинства, недостатки и рейтинг цифрами обрабатываются отдельно в коде (плашки на карточке товара выбираются механически, по частоте упоминаний) — выводить их не нужно, только текст.
+
+## Что должно передавать ai_summary
+
+Не перечисление признаков, а обобщённое, читаемое представление о товаре — как будто ты рассказываешь человеку, который не читал отзывы, чего ему ждать от использования этой вещи. После прочтения у читателя должно остаться ощущение «понимаю, как этот товар ведёт себя на практике и как его в целом воспринимают покупатели», а не «мне перечислили ключевые слова через запятую».
+
+## Источник данных
+
+- Опирайся только на категории из «Топ достоинств» и «Топ недостатков» входных данных. Не вводи темы, которых там нет, даже если что-то яркое встретилось в цитате — цитаты используй только как источник тона и живых формулировок для уже существующих тем.
+  - Пример нарушения: входные достоинства — «Цена», «Функциональность». В тексте нельзя добавлять «удобство носки» только потому, что это слово встретилось в одной из цитат — это тема, которой нет в топ-списке.
+- Никогда не копируй разговорные, сленговые или эмоционально окрашенные слова прямо из цитат в текст ai_summary (например, «огонь», «крутость», «супер») — даже в кавычках как «яркая цитата». Пересказывай суть цитаты нейтральными словами, не её лексику.
+- Учитывай только категории с частотой упоминания ≥2. Единичное упоминание — это мнение одного покупателя, а не общее восприятие, в текст его не включай.
+- Не обязательно упомянуть все прошедшие порог категории — выбери 2–4 самые частотные с каждой стороны, которые реально формируют общую картину, а не пытайся вместить весь список.
+
+## Структура текста
+
+Ai_summary — не список признаков через запятую, а связный текст с логикой: главный вывод → раскрытие через сценарий → ограничения (если есть).
+1. Начни с главного вывода — декларативно, без хеджирования и без пассивных конструкций. Не начинай с «Пользователи отмечают, что…» и не начинай с безличных пассивных оборотов вроде «Были отмечены…», «Отмечается, что…» — начни сразу с сути, товар как подлежащее и активный залог: «Кроссовки хорошо держат ногу при долгой ходьбе». Атрибуцию к покупателям можно добавить вторым слоем, ближе к концу фразы или во втором предложении — она не обязана открывать текст и не должна делать первое предложение безличным.
+2. Раскрой вывод через сценарий использования, а не через список признаков. Объясняй, для чего характеристика полезна покупателю, а не просто называй её.
+   - Плохо: «удобство, лёгкость, дышащие свойства»
+   - Хорошо: «лёгкие и хорошо дышат — отмечают при долгой ходьбе»
+3. Не бойся писать об ограничениях. Если недостаток прошёл порог по частоте — назови его прямо, через «однако», «но», «при этом». Не смягчай и не растворяй в общей позитивной интонации.
+   - Используй противопоставительные слова («однако», «несмотря на», «но») только если дальше действительно идёт контраст. Не соединяй ими две мысли одного знака (например, два достоинства подряд) — это создаёт логически пустое предложение.
+   - Не добавляй причинно-следственные связи, которых нет в исходных данных (например, «пятна портят вид, снижая надёжность» — если про надёжность в данных ничего не было, не выводи это как следствие).
+4. Учитывай пропорции, а не только факт наличия. Соотношение частот определяет вес в тексте:
+   - Явный перевес достоинств над недостатками — используй «большинство покупателей», «в основном», «чаще всего» для сильной стороны и «отдельные покупатели отмечают», «часть отзывов указывает» — для более редкой.
+   - Не описывай достоинства и недостатки как равнозначные по интонации и длине только потому, что оба есть в данных — вес в тексте должен отражать реальное соотношение частот.
+5. Раскрывай обе стороны симметрично. Частая ошибка — сжимать достоинства в перечисление ярлыков, а недостатки разворачивать в подробности с деталями из цитат. Если достоинство — самая частая тема, оно должно получить не меньше конкретики и объёма в тексте, чем недостаток.
+6. Пиши минимум 2 предложения: одно — про сильную сторону, другое — про ограничения (если они прошли порог).
+7. Заканчивай коротким выводом, для чего товар подходит, если это укладывается в лимит слов — не повтор фактов, а синтез в духе «для ежедневных прогулок», «для активных тренировок». Такой вывод не обязателен для каждого текста, если он не влезает в 40 слов вместе с остальным — тогда опусти его, а не жертвуй раскрытием ограничений.
+
+## Атрибуция к покупателям
+
+Не обязательно открывать текст словами «Пользователи отмечают…» — это можно вынести во второе предложение или в конец фразы. Варианты атрибуции (используй не всегда один и тот же, где уместно по месту в тексте):
+- «…, это отмечает большинство покупателей.»
+- «В отзывах чаще всего отмечают, что…»
+- «Покупатели чаще всего выделяют…»
+- «…, отмечают покупатели.»
+
+Не используй один и тот же скелет предложения из карточки в карточку. Например, если для одного товара текст начался с «[Товар] удобные и лёгкие…» и закончился «В целом, это надёжный вариант для повседневной носки» — для следующего товара того же типа нужна другая конструкция открытия и другая конструкция вывода, даже если характеристики похожи. Меняй: порядок слов, глагол в начале («держат форму», «хорошо сидят», «выдерживают нагрузку» вместо всегда «удобные и»), формулировку вывода (не только «надёжный вариант для повседневной носки» — можно «стоит присмотреться, если…», «подходит тем, кто…», «оправдывает свою цену, если…»).
+
+## Требования к тексту ai_summary
+
+- начинается с заглавной буквы;
+- не более 40 слов;
+- нейтральный тон, без маркетинговых формулировок и эмоционально окрашенных слов;
+- не делает выводов, которых нет в отзывах;
+- не упоминает количество отзывов.
+
+Числовые данные (температура, размеры и т.п.) — цифрами, а не словами: «-10°C», а не «минус десять градусов».
+
+Без слов-приблизителей: примерно, приблизительно, около, где-то.
+Без слов: лучший, идеальный, великолепный, потрясающий, превосходный, невероятный, отличный, отлично (и другие словоформы: идеально, великолепно и т.п.). Грамматика и словоформы — проверяй по примерам: Правильно: удобство, дышащий материал, натирает. Неправильно: удобность, дыхательный материал, натиряет.
+
+## Хороший и плохой пример
+
+Хорошо (декларативное начало, сценарий, недостаток не смягчён, пропорция видна, есть короткий вывод): «Кроссовки лёгкие и хорошо держат ногу при долгой ходьбе — это отмечает большинство покупателей. Отдельные жалуются, что материал теряет форму после нескольких месяцев активной носки. В целом — надёжный вариант для ежедневных прогулок.»
+
+Плохо (хеджирующее начало, сухое перечисление, нет сценария и вывода): «Пользователи отмечают лёгкость, удобство, качество материалов, лёгкую конструкцию и точную посадку, однако быстрый износ и плохую вентиляцию.»
+
+## Финальная проверка перед ответом
+
+Перед тем как вывести JSON, проверь текст:
+1. Начинается ли ai_summary с товара как подлежащего в активном залоге (не с «Были отмечены…», не с пассива)?
+2. Нет ли в тексте слова «удобность» (нужно «удобство»), «дыхательный» (нужно «дышащий»), «натиряет» (нужно «натирает») или других слов из списка запрещённых?
+3. Если есть противопоставление («однако», «но», «несмотря на») — действительно ли то, что после него, противоречит тому, что до него?
+4. Нет ли причинно-следственной связи, которой нет в исходных данных?
+
+## Формат ответа
+
+Верни строго JSON, без markdown-обёртки и пояснений вокруг:
+
+{
+  "ai_summary": "текст summary до 40 слов"
+}
+"""
+
+REDUCE_USER_TEMPLATE = """Проанализируй данные о товаре и создай финальную сводку.
+
+ТОВАР:
+- Модель ID: {model_id}
+- Тип: {product_type}
+- Средний рейтинг: {rating}/5.0
+
+ДОСТОИНСТВА (по частоте упоминаний):
+{pros}
+
+НЕДОСТАТКИ (по частоте упоминаний):
+{cons}
+
+ЯРКИЕ ЦИТАТЫ:
+{quotes}
+
+Верни JSON с ai_summary (до 40 слов).
+"""</pre></div>
+          <a class="prompt-toggle" onclick="togglePrompt('reducePrompt', this)">Раскрыть ▾</a>
+        </div>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">9</span></div></div>
+      <div class="rcard"><h3>Запись ИИ-сводки в БД <span class="phase">MySQL</span></h3>
+        <p>Готовый текст сводки сохраняется в карточке товара и сразу доступен для отдачи на сайт.</p>
+      </div></div>
+
+    <div class="rstep"><div class="rnode"><div class="circle"><span class="wk">шаг</span><span class="num">10</span></div></div>
+      <div class="rcard"><h3>Отображение на сайте <span class="phase">Frontend</span></h3>
+        <ul class="af-bullets">
+          <li>используется топ-5 по количеству упоминаний достоинств</li>
+          <li>топ-2 недостатков</li>
+        </ul>
+      </div></div>
+
   </div>
 
-  <div class="pipe-detail">
-    <div class="pd-card"><h4><span style="color:var(--blue)">◆</span> Вход: сырые данные</h4>
-      <ul><li>Текст отзыва, оценка, дата, ID товара</li><li>Верифицированная покупка (флаг)</li><li>Реакции: полезно / бесполезно</li><li>Фото-отзывы (метаданные)</li></ul></div>
-    <div class="pd-card"><h4><span style="color:var(--orange)">◆</span> Обработка: логика</h4>
-      <ul><li>Фильтр: min 3 отзыва на товар</li><li>Порог доверия по спам-скору</li><li>Взвешивание свежих отзывов</li><li>Инкрементальное обновление раз в сутки</li></ul></div>
-    <div class="pd-card"><h4><span style="color:var(--good)">◆</span> Выход: продукт</h4>
-      <ul><li>Саммари 2–3 предложения</li><li>3–5 плюсов и минусов</li><li>Аспектные теги с тональностью</li><li>Ссылки на репрезентативные отзывы</li></ul></div>
-  </div>
-
-  <div class="codebox">
-    <pre><span class="cm"># Упрощённая схема пайплайна</span>
-<span class="kw">def</span> <span class="fn">build_ai_summary</span>(product_id):
-    reviews = <span class="fn">load_reviews</span>(product_id)              <span class="cm"># сбор из БД</span>
-    reviews = <span class="fn">clean</span>(reviews)                        <span class="cm"># дедуп + антиспам + нормализация</span>
-    <span class="kw">if</span> <span class="fn">len</span>(reviews) &lt; <span class="st">3</span>: <span class="kw">return</span> <span class="st">None</span>            <span class="cm"># порог достаточности</span>
-
-    aspects = <span class="fn">absa_model</span>(reviews)                 <span class="cm"># тональность по аспектам</span>
-    summary = <span class="fn">llm_summarize</span>(                       <span class="cm"># генерация LLM</span>
-        reviews, aspects,
-        prompt=<span class="st">"Собери честное саммари: суть, плюсы, минусы"</span>
-    )
-    <span class="kw">return</span> <span class="fn">cache</span>(product_id, summary)           <span class="cm"># кэш → карточка товара</span></pre>
+  <h3 id="llm-table" class="llm-table-title">Таблица сравнения LLM</h3>
+  <p class="p-sub">Зелёным — модели, которые реально используются в пайплайне (шаги 5 и 8)</p>
+  <div class="table-scroll">
+    <table class="llm-table">
+      <thead>
+        <tr><th></th><th>DeepSeek V4 Flash</th><th class="chosen">YandexGPT Lite</th><th>Qwen3.6 35B</th><th>Qwen3 235B</th><th class="chosen">GPT OSS 20B</th><th>GPT OSS 120B</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Стоимость (руб. за 1 тыс. токенов)</th>
+          <td>Входящие: 0,3<br>Исходящие: 0,5</td>
+          <td class="chosen">0,2</td>
+          <td>Входящие: 0,2<br>Исходящие: 0,3</td>
+          <td>0,5</td>
+          <td class="chosen">0,1</td>
+          <td>0,3</td>
+        </tr>
+        <tr>
+          <th>Количество параметров (млрд)</th>
+          <td>284</td><td class="chosen">8</td><td>35</td><td>235</td><td class="chosen">20</td><td>120</td>
+        </tr>
+        <tr>
+          <th>Размер контекстного окна (тыс. токенов)</th>
+          <td>1 тыс.</td><td class="chosen">32</td><td>262</td><td>262</td><td class="chosen">131</td><td>131</td>
+        </tr>
+        <tr>
+          <th>Качество работы с русским языком</th>
+          <td>Хорошее качество, но может вставлять английские слова (нужны дополнительные инструкции)</td>
+          <td class="chosen">Отличное, глубокое понимание грамматики и особенностей русского языка</td>
+          <td>Отличное качество, хорошо справляется c академическим текстом</td>
+          <td>Отличное качество, понимает нюансы речи</td>
+          <td class="chosen">Не очень хорошее, может допускать логические ошибки</td>
+          <td>Среднее</td>
+        </tr>
+        <tr>
+          <th>Вес, ГБ</th>
+          <td>170</td><td class="chosen">16</td><td>70</td><td>500</td><td class="chosen">14</td><td>124</td>
+        </tr>
+        <tr>
+          <th>Соответствие нашим данным</th>
+          <td>Нецелесообразно использовать из-за высоких требований к вычислительным ресурсам и большого размера модели, учитывая, что генерация summary должна производиться регулярно</td>
+          <td class="chosen">Наиболее соответствует требованиям проекта. Хорошо работает с отзывами, формулирует грамматически верные сводки по полученным данным. Имеет невысокие вычислительные требования</td>
+          <td>Справляется с задачей генерации отзывов, но в сравнении с YandexGPT Lite имеет больший размер модели, соответственно требует больше вычислительных ресурсов</td>
+          <td>Нецелесообразно использовать из-за высоких требований к вычислительным ресурсам и большого размера модели, учитывая, что генерация summary должна производиться регулярно</td>
+          <td class="chosen">Самая низкая стоимость и вес модели, однако не подходит для генерации финального summary, так как модель систематически нарушает инструкции и допускает ошибки в формировании summary — зато отлично справляется с промежуточным разбором отзывов на MAP-этапе</td>
+          <td>Качество генерации выше чем у GPT OSS 20B, но требует более высоких затрат и существенно больше вычислительных ресурсов в сравнении с YandexGPT Lite</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
@@ -606,11 +895,53 @@ footer b{color:var(--orange)}
   <div class="disclaimer">📌 <b>Вывод:</b> при консервативных допущениях проект окупается за ~3,4 месяца и даёт около 14 млн ₽ годового эффекта. Основной драйвер — прирост конверсии и снижение возвратов, а не только экономия на модерации. Цифры демонстрационные — подставьте свои данные из расчётной модели.</div>
 </section>
 
+<!-- ================= 7. CONCLUSIONS ================= -->
+<section class="page" id="p6">
+  <div class="eyebrow">Что в итоге</div>
+  <h2 class="page-title">Выводы</h2>
+  <p class="page-sub">Кратко — зачем это Спортмастеру, что уже работает и что нужно, чтобы довести решение до продакшна.</p>
+
+  <div class="pipe-detail">
+    <div class="pd-card"><h4><span style="color:var(--blue)">◆</span> Проблема реальна</h4>
+      <ul>
+        <li>Рейтинги смещены к 5★ (медиана 4,8) — но негатив «весит» для восприятия больше позитива, прятать его нельзя</li>
+        <li>У половины товаров 3 отзыва и меньше — сводка должна работать и на малых, и на сотнях отзывов</li>
+        <li>Отзывы-«простыни» на 20 тыс. знаков читать вручную нереально, а купить — решение за секунды</li>
+      </ul></div>
+    <div class="pd-card"><h4><span style="color:var(--orange)">◆</span> Прототип — не мокап</h4>
+      <ul>
+        <li>Читает и пишет в настоящую MySQL, а не в захардкоженный JSON</li>
+        <li>Сводка считается реальными вызовами LLM (gpt-oss-20b на разбор отзывов, yandexgpt-5-lite — на финальный текст)</li>
+        <li>Новый отзыв сразу пересчитывает рейтинг и — по порогу в 20% новых отзывов — саму сводку</li>
+      </ul></div>
+    <div class="pd-card"><h4><span style="color:var(--good)">◆</span> Экономика сходится</h4>
+      <ul>
+        <li>Окупаемость ≈ 3,4 месяца, годовой эффект ≈ 14 млн ₽ при консервативных допущениях</li>
+        <li>Сводка стоит ~0,4 ₽ — на масштаб каталога это несравнимо дешевле экономии на модерации</li>
+        <li>Драйвер эффекта — конверсия и возвраты, а не только экономия времени модераторов</li>
+      </ul></div>
+    <div class="pd-card"><h4><span style="color:var(--navy)">◆</span> Что дальше</h4>
+      <ul>
+        <li>Авторизация и антиспам-защита на запись отзывов перед реальным продом</li>
+        <li>HTTPS и обучение/калибровка на полном датасете Спортмастера, а не публичном кейсовом</li>
+        <li>A/B-тест влияния AI-сводки на конверсию карточки и на возвраты по размеру</li>
+      </ul></div>
+  </div>
+
+  <div class="disclaimer">📌 <b>Главное:</b> идея проверена на реальных данных и реальном коде, а не только на слайдах — каталог, отзывы, AI-сводка и деньги в кейсе считаются, а не придуманы. До прод-версии остаётся закрыть безопасность и дообучить модель на данных самого Спортмастера.</div>
+</section>
+
 <footer>
   Кейс Спортмастера «AI-Summary отзывов» &nbsp;·&nbsp; Летняя школа по бизнес-аналитике ВШМ СПбГУ 2026
 </footer>
 
 <script>
+function togglePrompt(id, btn){
+  var box=document.getElementById(id);
+  var collapsed=box.classList.contains('collapsed');
+  if(collapsed){ box.classList.remove('collapsed'); btn.textContent='Свернуть ▴'; }
+  else { box.classList.add('collapsed'); btn.textContent='Раскрыть ▾'; }
+}
 function go(i){
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='p'+i));
   document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',+b.dataset.i===i));
@@ -626,9 +957,9 @@ function animate(i){
   // waterfall
   root.querySelectorAll('.wf-bar').forEach(b=>{b.style.height='0';setTimeout(()=>b.style.height=(b.dataset.h||0)+'%',80)});
 }
-// стрелки листают только существующие статичные страницы (0,1,2,3,5)
+// стрелки листают только существующие статичные страницы (0,1,2,3,5,6)
 document.addEventListener('keydown',e=>{
-  const pages=[0,1,2,3,5];
+  const pages=[0,1,2,3,5,6];
   const active=document.querySelector('.page.active');
   const cur=active?pages.indexOf(+active.id.slice(1)):0;
   if(e.key==='ArrowRight'&&cur<pages.length-1)go(pages[cur+1]);

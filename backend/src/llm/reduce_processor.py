@@ -85,7 +85,7 @@ def run_reduce_pipeline(input_path: Path = None, output_path: Path = None):
     logger.info(f"✅ Загружено {len(summaries)} моделей")
 
     # Инициализируем LLM клиент
-    llm_client = YandexGPTClient()
+    llm_client = YandexGPTClient(settings.yandex_reduce_model)
 
     # Обрабатываем каждую модель
     final_summaries = []

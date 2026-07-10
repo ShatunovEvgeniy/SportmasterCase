@@ -69,8 +69,16 @@ class ErrorResponse(BaseModel):
 
 
 class JobStartResponse(BaseModel):
-    """Ответ на запуск пересчёта сводки — дальше опрашивается через /api/jobs/{job_id}."""
+    """
+    Ответ на добавление отзыва. Если will_regenerate=False — порог +20% новых
+    отзывов ещё не достигнут, пересчёт сводки не запускался, job уже завершён,
+    опрашивать /api/jobs/{job_id} не нужно (в message — готовое пояснение,
+    в summary — актуальный, но не изменившийся объект сводки для обновления рейтинга).
+    """
     job_id: str
+    will_regenerate: bool = True
+    message: Optional[str] = None
+    summary: Optional[SummaryResponse] = None
 
 
 class JobStatusResponse(BaseModel):

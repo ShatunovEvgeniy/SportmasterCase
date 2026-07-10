@@ -97,7 +97,7 @@ def run_map_stage(model_id: int = None, chunk_size: int = None):
 
     # MAP этап
     logger.info("🧠 Запуск MAP обработки через LLM...")
-    llm_client = YandexGPTClient()
+    llm_client = YandexGPTClient(settings.yandex_map_model)
     map_results = []
 
     for chunk in tqdm(chunks, desc="MAP"):

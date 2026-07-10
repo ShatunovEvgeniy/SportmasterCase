@@ -42,6 +42,9 @@ class Product(Base):
     ai_summary = Column(Text, nullable=True)
     ai_summary_likes = Column(Integer, default=0, nullable=False)
     ai_summary_dislikes = Column(Integer, default=0, nullable=False)
+    # Сколько отзывов было у товара на момент последней генерации сводки — чтобы
+    # решать, пора ли пересчитывать (порог: +20% новых отзывов, см. Database.should_regenerate)
+    last_generation_review_count = Column(Integer, nullable=True)
 
     reviews = relationship("Review", back_populates="product", cascade="all, delete-orphan")
     aspects = relationship("Aspect", back_populates="product", cascade="all, delete-orphan")
