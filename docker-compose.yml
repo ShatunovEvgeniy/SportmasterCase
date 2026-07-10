@@ -3,12 +3,16 @@ services:
     image: mysql:8.4
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      # :-fallback — чтобы стек поднимался и без .env (просто с дефолтными паролями),
+      # а не падал молча из-за пустого MYSQL_ROOT_PASSWORD (с ним образ MySQL вообще
+      # отказывается стартовать). Для чего-то серьёзнее демо на одном компьютере —
+      # обязательно заведи свой .env из .env.example.
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-changeme_root_pw}
       MYSQL_DATABASE: online_shop
-      MYSQL_USER: ${ONLINE_SHOP_DB_USER}
-      MYSQL_PASSWORD: ${ONLINE_SHOP_DB_PASSWORD}
-      SPORTMASTER_DB_USER: ${SPORTMASTER_DB_USER}
-      SPORTMASTER_DB_PASSWORD: ${SPORTMASTER_DB_PASSWORD}
+      MYSQL_USER: ${ONLINE_SHOP_DB_USER:-online_shop_app}
+      MYSQL_PASSWORD: ${ONLINE_SHOP_DB_PASSWORD:-changeme_shop_pw}
+      SPORTMASTER_DB_USER: ${SPORTMASTER_DB_USER:-sportmaster}
+      SPORTMASTER_DB_PASSWORD: ${SPORTMASTER_DB_PASSWORD:-changeme_sportmaster_pw}
     volumes:
       - mysql-data:/var/lib/mysql
       - ./mysql-init/01-init-sportmaster-db.sh:/docker-entrypoint-initdb.d/01-init-sportmaster-db.sh:ro
@@ -17,7 +21,7 @@ services:
     # Порт 3306 наружу НЕ публикуется — доступ к MySQL только из docker-сети,
     # backend и frontend ходят к нему по имени сервиса "mysql".
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASSWORD}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASSWORD:-changeme_root_pw}"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -25,13 +29,19 @@ services:
   backend:
     build: ./backend
     restart: unless-stopped
-    env_file:
-      - ./backend/.env
+    # Раньше тут был env_file: ./backend/.env — если этого файла нет на диске (а его
+    # обычно нет, он в .gitignore), docker compose падает целиком ДО старта любого
+    # сервиса, включая mysql. Поэтому всё нужное берём из корневого .env через
+    # environment: — он либо есть, либо переменные просто пустые, но compose не падает.
     environment:
       MYSQL_HOST: mysql
-      MYSQL_USER: ${SPORTMASTER_DB_USER}
-      MYSQL_PASSWORD: ${SPORTMASTER_DB_PASSWORD}
+      MYSQL_USER: ${SPORTMASTER_DB_USER:-sportmaster}
+      MYSQL_PASSWORD: ${SPORTMASTER_DB_PASSWORD:-changeme_sportmaster_pw}
       MYSQL_DATABASE: sportmaster
+      YANDEX_API_KEY: ${YANDEX_API_KEY:-}
+      YANDEX_FOLDER_ID: ${YANDEX_FOLDER_ID:-}
+      YANDEX_MAP_MODEL: ${YANDEX_MAP_MODEL:-gpt-oss-20b}
+      YANDEX_REDUCE_MODEL: ${YANDEX_REDUCE_MODEL:-yandexgpt-5-lite}
     depends_on:
       mysql:
         condition: service_healthy
@@ -42,10 +52,10 @@ services:
     restart: unless-stopped
     environment:
       DB_HOST: mysql
-      ONLINE_SHOP_DB_USER: ${ONLINE_SHOP_DB_USER}
-      ONLINE_SHOP_DB_PASSWORD: ${ONLINE_SHOP_DB_PASSWORD}
-      SPORTMASTER_DB_USER: ${SPORTMASTER_DB_USER}
-      SPORTMASTER_DB_PASSWORD: ${SPORTMASTER_DB_PASSWORD}
+      ONLINE_SHOP_DB_USER: ${ONLINE_SHOP_DB_USER:-online_shop_app}
+      ONLINE_SHOP_DB_PASSWORD: ${ONLINE_SHOP_DB_PASSWORD:-changeme_shop_pw}
+      SPORTMASTER_DB_USER: ${SPORTMASTER_DB_USER:-sportmaster}
+      SPORTMASTER_DB_PASSWORD: ${SPORTMASTER_DB_PASSWORD:-changeme_sportmaster_pw}
     depends_on:
       mysql:
         condition: service_healthy

@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Shell-скрипты обязаны быть с LF, а не CRLF — Windows-чекаут (autocrlf=true) иначе
+# ломает шебанг/парсинг внутри Linux-контейнеров (docker-entrypoint-initdb.d молча
+# падает, из-за чего mysql-контейнер не поднимается)
+*.sh text eol=lf
