@@ -1,0 +1,13 @@
+<web-app xmlns="https://jakarta.ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee https://jakarta.ee/web-app_6_0.xsd"
+         version="6.0">
+    <display-name>Online shop</display-name>
+    <welcome-file-list>
+        <welcome-file>sportmaster-case.html</welcome-file>
+    </welcome-file-list>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+</web-app>
+

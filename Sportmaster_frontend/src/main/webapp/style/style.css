@@ -1,0 +1,500 @@
+/* ============================================================
+   Спортмастер — стили для JSP-страниц «Каталог» и «О товаре».
+   Палитра и шрифт совпадают со статичными страницами сайта.
+   ============================================================ */
+:root{
+  --blue:#1551E5;
+  --blue-2:#1C66F4;
+  --red:#FF0016;
+  --navy:#0A2A6B;
+  --paper:#F4F7FC;
+  --paper-2:#E9EFFA;
+  --line:#D3DEF2;
+  --muted:#5A6B84;
+  --ink:#0B1220;
+  --shadow:0 10px 40px rgba(21,81,229,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Tahoma,Geneva,sans-serif;
+  color:var(--ink);
+  background:#fff;
+  line-height:1.55;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* ---------- Каталожная шапка (общая для «Каталог» и «О товаре») ---------- */
+.cat-bar{
+  display:flex;align-items:center;gap:16px;
+  background:var(--blue);
+  padding:14px clamp(16px,4vw,48px);
+}
+.cat-logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none}
+.cat-logo .logo{height:26px;width:auto;display:block}
+.cat-logo .logo polygon,.cat-logo .logo path{fill:#fff}
+.cat-logo .logo .lg-red{fill:var(--red)}
+.cat-center{flex:1;display:flex;align-items:center;justify-content:center;gap:14px}
+.cat-search{
+  width:420px;max-width:100%;height:38px;background:var(--blue-2);
+  border-radius:8px;display:flex;align-items:center;
+  padding:0 14px;color:#fff;font-weight:400;font-size:15px;justify-content:flex-start;
+}
+.cat-catalog{
+  background:#fff;color:var(--blue);font-weight:400;font-size:15px;
+  padding:9px 18px;border-radius:8px;text-decoration:none;flex-shrink:0;
+}
+.cat-icons{display:flex;align-items:center;gap:14px}
+.cat-ico{font-size:19px;line-height:1;cursor:pointer}
+.cat-exit{
+  background:#fff;color:var(--blue);font-family:Tahoma,Geneva,sans-serif;
+  font-weight:600;font-size:15px;border:none;border-radius:8px;
+  padding:9px 20px;cursor:pointer;transition:.18s;flex-shrink:0;text-decoration:none;
+}
+.cat-exit:hover{background:#EAF0FE}
+
+/* ---------- Общий контейнер контента ---------- */
+.cat-main{
+  flex:1;
+  width:100%;max-width:1240px;margin:0 auto;
+  padding:36px clamp(16px,5vw,64px) 64px;
+}
+.cat-title,.page-title{
+  font-family:Tahoma,Geneva,sans-serif;font-weight:bold;
+  text-transform:uppercase;color:var(--navy);
+  font-size:clamp(28px,4vw,44px);margin-bottom:28px;
+}
+
+/* ---------- Сетка карточек каталога ---------- */
+.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pcard{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;
+  display:flex;flex-direction:column;transition:.2s;text-decoration:none;color:inherit;
+}
+.pcard:hover{box-shadow:0 12px 32px rgba(21,81,229,.12);transform:translateY(-4px)}
+.pcard-img{
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
+  font-size:88px;margin-bottom:16px;overflow:hidden;
+}
+.pcard-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard-price{font-weight:bold;color:var(--blue);font-size:22px;text-align:left;margin-bottom:6px}
+.pcard-name{color:#000;font-weight:400;font-size:16px;text-align:left;margin-bottom:8px}
+.pcard-rate{display:flex;align-items:center;gap:8px}
+.pcard-rate .stars{color:var(--red);font-size:15px;letter-spacing:1px}
+.pcard-rate .rc{color:#B3B3B3;font-size:14px}
+
+/* ---------- Страница «О товаре» ---------- */
+.product-page{background:#fff}
+.back-link{
+  display:inline-block;margin-bottom:18px;color:var(--blue);
+  text-decoration:none;font-size:14px;font-weight:600;
+}
+.back-link:hover{text-decoration:underline}
+
+/* --- Карточка товара (фото + инфо) --- */
+.pi-view{display:grid;grid-template-columns:400px 1fr;gap:40px;align-items:start;margin-bottom:8px}
+.pi-photo{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+  aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:150px;
+}
+.pi-info{padding-top:6px}
+.pi-name{
+  font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:#000;
+  font-size:clamp(24px,3vw,34px);line-height:1.15;margin-bottom:8px;text-transform:none;
+}
+.pi-art{color:#B3B3B3;font-weight:400;font-size:15px;margin-bottom:12px}
+.pi-rate{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.rate-stars{font-size:18px;letter-spacing:2px}
+.rate-stars .on{color:var(--blue)}
+.rate-stars .off{color:#B3B3B3}
+.rate-num{font-weight:bold;color:#0A2A6B;font-size:16px}
+.rate-count{color:#B3B3B3;font-size:14px}
+.pi-price{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:#000;font-size:32px}
+
+/* --- Табы: Описание / Характеристики / Отзывы (разделены линиями #B3B3B3) --- */
+.pi-tabs{
+  display:flex;gap:36px;flex-wrap:wrap;
+  margin-top:40px;padding:16px 0;
+  border-top:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;
+}
+.pi-tab{
+  font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:#000;
+  font-size:clamp(24px,3vw,34px);cursor:pointer;transition:.15s;
+}
+.pi-tab:hover,.pi-tab.active{color:var(--blue)}
+
+.pi-block{padding:26px 0;border-bottom:1px solid #B3B3B3}
+.pi-desc-text{color:#333;font-size:15.5px;line-height:1.65}
+.pi-specs{list-style:none;display:flex;flex-direction:column;gap:11px;max-width:560px}
+.pi-specs li{
+  display:flex;justify-content:space-between;gap:12px;font-size:15px;
+  padding-bottom:10px;border-bottom:1px solid var(--paper-2);
+}
+.pi-specs li span{color:var(--muted)}
+.pi-specs li b{color:var(--navy)}
+
+/* ---------- Блок «Отзывы» ---------- */
+.rev-top{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start;margin-bottom:28px}
+
+/* Плашка средней оценки */
+.rev-score{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:26px 20px;text-align:center;
+}
+.rev-score-num{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;font-size:64px;color:var(--navy);line-height:1}
+.rev-score-stars{font-size:22px;letter-spacing:3px;margin:8px 0 6px}
+.rev-score-stars .on{color:var(--blue)}
+.rev-score-count{color:#B3B3B3;font-size:14px}
+
+/* Плашка AI-сводки */
+.ai-summary{
+  background:linear-gradient(135deg,rgba(21,81,229,.05),rgba(255,0,22,.04));
+  border:1.5px solid rgba(21,81,229,.25);border-radius:16px;padding:22px;position:relative;
+}
+.ai-summary-head{
+  font-family:Tahoma,Geneva,sans-serif;font-weight:bold;text-transform:uppercase;
+  letter-spacing:.5px;font-size:15px;color:var(--navy);margin-bottom:12px;
+}
+.ai-summary-text{color:var(--ink);font-size:14.5px;line-height:1.6;margin-bottom:16px}
+.ai-aspects{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.aspect{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+  background:none;border:none;cursor:pointer;font-family:Tahoma,Geneva,sans-serif;
+  font-size:14.5px;font-weight:600;padding:5px 4px;transition:.15s;
+}
+.aspect .aspect-ico{
+  width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;
+  justify-content:center;font-size:12px;color:#fff;flex-shrink:0;
+}
+.aspect.pro{color:#0d7a3d}
+.aspect.pro .aspect-ico{background:#12A150}
+.aspect.con{color:#7A8699}
+.aspect.con .aspect-ico{background:#B3B3B3}
+.aspect:hover{text-decoration:underline}
+.aspect.active{text-decoration:underline}
+.aspect-reviews{
+  display:none;flex-direction:column;gap:6px;
+  margin:0 0 8px 28px;padding-left:14px;border-left:2px solid var(--line);
+}
+.aspect-reviews.open{display:flex}
+.aspect-rev{font-size:13px;color:var(--muted);line-height:1.4}
+
+/* Обратная связь по AI-сводке */
+.ai-feedback{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+.ai-react{display:flex;gap:10px}
+.react-btn{
+  background:#fff;border:1px solid var(--line);border-radius:100px;
+  padding:6px 14px;cursor:pointer;font-size:14px;transition:.15s;
+}
+.react-btn:hover{border-color:var(--blue)}
+.ai-feedback-toggle{
+  margin-left:auto;background:none;border:none;color:var(--blue);
+  font-family:Tahoma,Geneva,sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;text-decoration:underline;
+}
+.ai-feedback-form{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.fb-title{font-weight:bold;color:var(--navy);margin-bottom:10px;font-size:14.5px}
+.fb-input{
+  width:100%;min-height:70px;border:1px solid var(--line);border-radius:8px;
+  padding:10px;font-family:Tahoma,Geneva,sans-serif;font-size:14px;resize:vertical;margin-bottom:10px;
+}
+
+/* Кнопка отправки */
+.btn-primary{
+  background:var(--blue);color:#fff;border:none;border-radius:8px;
+  padding:11px 24px;font-family:Tahoma,Geneva,sans-serif;font-weight:600;
+  font-size:14.5px;cursor:pointer;transition:.15s;
+}
+.btn-primary:hover{background:#1042c4}
+
+/* Форма нового отзыва */
+.rev-form{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:24px;margin-bottom:28px;
+}
+.rev-form-title{
+  font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:var(--navy);
+  font-size:20px;margin-bottom:18px;
+}
+.rev-form-row{margin-bottom:16px}
+.rev-form-row label{display:block;font-size:14px;font-weight:600;color:var(--navy);margin-bottom:7px}
+.rev-input{
+  width:100%;min-height:60px;border:1px solid var(--line);border-radius:8px;
+  padding:10px;font-family:Tahoma,Geneva,sans-serif;font-size:14px;resize:vertical;
+}
+.rev-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.star-input{display:inline-flex;gap:4px;font-size:30px;cursor:pointer;color:#B3B3B3}
+.star-input span{transition:.1s}
+.star-input span.on{color:var(--blue)}
+
+/* Список отзывов */
+.rev-list{display:flex;flex-direction:column;gap:16px}
+.rev-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.rev-item-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.rev-user{font-weight:bold;color:var(--navy);font-size:15px}
+.rev-item-stars{font-size:15px;letter-spacing:1px}
+.rev-item-stars .on{color:var(--blue)}
+.rev-item-stars .off{color:#B3B3B3}
+.rev-pros{font-size:14px;color:#0d7a3d;margin-bottom:4px}
+.rev-cons{font-size:14px;color:#7A8699;margin-bottom:8px}
+.rev-pros b,.rev-cons b{color:inherit}
+.rev-text{font-size:14.5px;color:#333;line-height:1.55}
+
+/* ---------- Подвал ---------- */
+footer{
+  background:var(--blue);color:#DCE6FB;text-align:center;padding:22px clamp(16px,5vw,48px);font-size:13px;line-height:1.6;
+}
+
+/* ============================================================
+   Страница «О товаре» (product_info.jsp)
+   ============================================================ */
+.product-page{background:#fff}
+.pi-main{flex:1;width:100%;max-width:1240px;margin:0 auto;padding:28px clamp(16px,5vw,64px) 64px}
+
+/* --- карточка товара (без окна-рамки) --- */
+.pi-top{display:grid;grid-template-columns:420px 1fr;gap:40px;align-items:start;margin-bottom:14px}
+.pi-media{position:sticky;top:20px}
+.pi-photo{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:160px;overflow:hidden;
+}
+.pi-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.pi-name{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:#000;font-size:32px;line-height:1.15;margin-bottom:8px}
+.pi-art{color:#B3B3B3;font-weight:400;font-size:15px;margin-bottom:12px}
+.pi-rating{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.stars-rate{letter-spacing:2px;font-size:18px;line-height:1}
+.stars-rate .st-on{color:#1551E5}
+.stars-rate .st-off{color:#B3B3B3}
+
+/* плавная заливка звёзд по проценту рейтинга (напр. 4.8/5 -> 5-я звезда залита на 80%) */
+.stars-frac{position:relative;display:inline-block;white-space:nowrap}
+.stars-frac .stars-bg{color:#B3B3B3}
+.stars-frac .stars-fg{position:absolute;top:0;left:0;width:0;overflow:hidden;white-space:nowrap;color:#1551E5}
+.pcard-rate .stars.stars-frac .stars-bg{color:#B3B3B3}
+.pcard-rate .stars.stars-frac .stars-fg{color:var(--red)}
+.rate-num{font-weight:bold;color:#1551E5;font-size:16px}
+.rate-count{color:#B3B3B3;font-size:14px}
+.pi-price{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:#000;font-size:34px}
+
+/* --- вкладки-якоря --- */
+.pi-tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:10px 0 8px}
+.pi-tab{padding:12px 2px;color:var(--muted);text-decoration:none;font-size:15px;border-bottom:2px solid transparent;transition:.15s}
+.pi-tab:hover{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* --- секции Описание/Характеристики/Отзывы --- */
+.pi-section{padding:26px 0;border-bottom:1px solid #B3B3B3}
+.pi-section:last-child{border-bottom:none}
+.pi-h2{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:#000;font-size:32px;margin-bottom:16px}
+.pi-desc{color:var(--muted);font-size:15.5px;max-width:820px}
+.pi-specs{list-style:none;display:flex;flex-direction:column;gap:10px;max-width:620px}
+.pi-specs li{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding-bottom:9px;border-bottom:1px solid var(--paper-2)}
+.pi-specs li span{color:var(--muted)}
+.pi-specs li b{color:var(--navy)}
+
+/* ============ Блок отзывов ============ */
+.rev-grid{display:grid;grid-template-columns:260px 1fr;gap:22px;margin-bottom:30px;align-items:start}
+
+/* плашка средней оценки */
+.rev-score{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:26px 20px;text-align:center;
+}
+.rev-score-big{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;font-size:64px;line-height:1;color:#0A2A6B}
+.rev-score-stars{font-size:22px;margin:10px 0 8px}
+.rev-score-count{color:#B3B3B3;font-size:14px}
+
+/* плашка AI-сводки */
+.ai-card{
+  position:relative;
+  background:linear-gradient(135deg,rgba(21,81,229,.05),rgba(255,0,22,.04));
+  border:1.5px solid rgba(21,81,229,.25);border-radius:16px;padding:22px;
+}
+.ai-card-title{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);font-size:15px;margin-bottom:12px}
+.ai-card-summary{font-size:14.5px;color:var(--ink);line-height:1.6;margin-bottom:16px}
+.ai-tags{display:flex;flex-wrap:wrap;gap:9px}
+.ai-tag{
+  font-family:Tahoma,Geneva,sans-serif;font-size:13.5px;font-weight:600;cursor:pointer;
+  border:1px solid var(--line);background:#fff;border-radius:100px;padding:7px 14px;
+  display:inline-flex;align-items:center;gap:7px;transition:.15s;
+}
+.ai-tag .ai-tag-ic{font-weight:700}
+.ai-tag .ai-tag-cnt{color:#B3B3B3;font-weight:400;font-size:12.5px}
+.ai-tag.pro{color:#12A150}
+.ai-tag.pro .ai-tag-ic{color:#12A150}
+.ai-tag.con{color:#E8422E}
+.ai-tag.con .ai-tag-ic{color:#E8422E}
+.ai-tag:hover{border-color:var(--blue)}
+.ai-tag.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.ai-tag.active .ai-tag-ic{color:#fff}
+.ai-tag.active .ai-tag-cnt{color:#fff}
+
+.aspect-panel{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.aspect-panel-head{font-size:13px;color:var(--muted);margin-bottom:8px}
+.aspect-panel-head b{color:var(--navy)}
+.aspect-review{display:flex;flex-direction:column;gap:3px;font-size:14px;color:var(--ink);padding:10px 0;border-top:1px solid var(--paper-2)}
+.aspect-review:first-of-type{border-top:none}
+.aspect-review .ar-user{font-weight:bold;color:var(--navy);font-size:13.5px}
+.aspect-review .ar-quote{color:var(--ink);font-style:italic}
+.aspect-review .ar-more{color:var(--blue);font-size:13px;font-weight:600;text-decoration:none;align-self:flex-start}
+.aspect-review .ar-more:hover{text-decoration:underline}
+
+/* лайк/дизлайк + обратная связь — всё справа */
+.ai-feedback{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:16px;flex-wrap:wrap}
+.ai-likes{display:flex;gap:8px}
+
+/* иконка AI в углу сводки + тултип (пункт 8) */
+.ai-badge{
+  position:absolute;top:16px;right:16px;
+  width:30px;height:30px;border-radius:8px;
+  background:linear-gradient(135deg,var(--blue),#3B74F0);color:#fff;
+  font-family:Tahoma,Geneva,sans-serif;font-weight:bold;font-size:12px;
+  display:flex;align-items:center;justify-content:center;cursor:help;
+}
+.ai-badge .ai-tooltip{
+  position:absolute;top:38px;right:0;z-index:5;
+  width:210px;background:var(--navy);color:#fff;font-weight:400;
+  font-size:12.5px;line-height:1.4;padding:9px 12px;border-radius:8px;
+  opacity:0;visibility:hidden;transition:.15s;box-shadow:0 8px 24px rgba(10,42,107,.25);
+}
+.ai-badge:hover .ai-tooltip,.ai-badge:focus .ai-tooltip{opacity:1;visibility:visible}
+/* заголовок сводки: отступ справа, чтобы не наезжал на иконку */
+.ai-card .ai-card-title{padding-right:40px}
+
+/* индикатор активного фильтра по свойству (пункт 10) */
+.filter-bar{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+  padding:11px 16px;margin-bottom:14px;font-size:14px;color:var(--navy);
+}
+.filter-bar b{color:var(--blue)}
+.filter-reset{color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;text-decoration:underline;margin-left:auto}
+.like-btn{
+  font-family:Tahoma,Geneva,sans-serif;font-size:14px;cursor:pointer;
+  border:1px solid var(--line);background:#fff;border-radius:100px;padding:6px 13px;transition:.15s;
+}
+.like-btn:hover{border-color:var(--blue)}
+.like-btn.chosen{border-color:var(--blue);background:#EAF0FE;color:var(--blue);font-weight:600}
+.like-btn.disabled{cursor:default;opacity:.55}
+.like-btn.disabled:hover{border-color:var(--line)}
+.like-btn.chosen.disabled{opacity:1}
+.ai-fb-link{color:var(--blue);font-size:14px;font-weight:600;cursor:pointer;text-decoration:underline}
+/* атрибут hidden должен всегда скрывать, даже поверх display:flex */
+[hidden]{display:none !important}
+.ai-fb-form{margin-top:14px;display:flex;flex-direction:column;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.ai-fb-form label{font-size:14px;font-weight:600;color:var(--navy)}
+.ai-fb-form textarea{min-height:70px;resize:vertical}
+.fb-thanks{color:#12A150;font-weight:600;font-size:14px}
+
+/* формы (общие поля) */
+textarea,.new-review input[type=text]{
+  width:100%;font-family:Tahoma,Geneva,sans-serif;font-size:14px;color:var(--ink);
+  border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;
+}
+textarea:focus,.new-review input:focus{outline:none;border-color:var(--blue)}
+.btn-primary{
+  font-family:Tahoma,Geneva,sans-serif;font-weight:600;font-size:14px;color:#fff;cursor:pointer;
+  background:var(--blue);border:none;border-radius:10px;padding:11px 22px;transition:.15s;align-self:flex-start;
+}
+.btn-primary:hover{background:#0f43c4}
+
+/* форма нового отзыва */
+.new-review{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:30px}
+.nr-title{font-family:Tahoma,Geneva,sans-serif;font-weight:bold;color:var(--navy);font-size:20px;margin-bottom:16px}
+.nr-field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.nr-field>label{font-size:14px;font-weight:600;color:var(--navy)}
+.nr-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.star-input{display:flex;gap:4px;font-size:28px;color:#B3B3B3;cursor:pointer;letter-spacing:2px}
+.star-input span{transition:.1s}
+.star-input span.on{color:#1551E5}
+.star-input span:hover{transform:scale(1.15)}
+.nr-row{display:flex;gap:16px;flex-wrap:nowrap}
+.nr-row .nr-field{flex:1 1 0;min-width:0}
+.nr-submit{margin-top:4px}
+
+/* прогресс-бар пересчёта AI-сводки */
+.nr-progress{margin-top:16px}
+.nr-progress-track{height:8px;border-radius:6px;background:var(--paper-2);overflow:hidden}
+.nr-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-2));transition:width .35s ease}
+.nr-progress-stage{margin-top:8px;font-size:13px;color:var(--muted)}
+
+/* список отзывов */
+.review-list{display:flex;flex-direction:column;gap:14px}
+.review-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.review-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.review-user{font-weight:bold;color:var(--navy);font-size:15px}
+.review-stars{font-size:15px}
+.review-pc{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:8px;font-size:13.5px}
+.pc-pro{color:#12A150}
+.pc-con{color:#E23B3B}
+.review-text{color:var(--muted);font-size:14.5px;line-height:1.55}
+
+/* аккордеоны Описание / Характеристики */
+.accordion{border-bottom:1px solid #B3B3B3}
+.accordion:first-of-type{border-top:1px solid #B3B3B3}
+.acc-head{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  background:none;border:none;padding:20px 2px;
+  font-family:Tahoma,Geneva,sans-serif;
+}
+.acc-title{font-weight:bold;color:#000;font-size:clamp(22px,3vw,32px)}
+.acc-arrow{font-size:26px;color:var(--muted);line-height:1}
+
+/* кнопка, раскрывающая форму отзыва */
+.open-review-btn{margin:0 0 20px}
+
+/* кнопка «Загрузить ещё отзывы» — вторична по отношению к «Оставить отзыв» */
+.load-more-btn{
+  display:block;margin:18px auto 0;background:#fff;color:var(--blue);
+  border:1px solid var(--line);
+}
+.load-more-btn:hover{background:var(--paper)}
+
+/* подсветка отзыва при переходе «Читать больше» */
+.review-item.flash{animation:flashHi 1.5s ease}
+@keyframes flashHi{
+  0%{box-shadow:0 0 0 3px rgba(21,81,229,.55)}
+  100%{box-shadow:0 0 0 3px rgba(21,81,229,0)}
+}
+
+/* ---------- Адаптив ---------- */
+@media(max-width:1024px){
+  .pi-top{grid-template-columns:1fr}
+  .pi-media{position:static;max-width:420px}
+  .rev-grid{grid-template-columns:1fr}
+  .product-view{grid-template-columns:1fr}
+  .product-media{position:static;max-width:420px}
+  .pi-view{grid-template-columns:1fr;gap:24px}
+  .pi-photo{max-width:360px}
+  .rev-top{grid-template-columns:1fr}
+  .rev-score{max-width:260px}
+}
+@media(max-width:720px){
+  .cat-bar{flex-wrap:wrap;gap:10px}
+  .cat-center{flex:1 1 100%;order:5;flex-wrap:wrap}
+  .cat-search{width:100%}
+  /* без .cat-center на первой строке некому распирать шапку — сердечко/корзину и
+     «Выход» прижимает влево к лого; justify-content:space-between держит лого
+     слева, а иконки+«Выход» — единой группой у самого правого края */
+  .cat-bar{justify-content:space-between}
+  .cat-icons{margin-left:0}
+  .catalog{grid-template-columns:repeat(2,1fr);gap:14px}
+  .rev-form-grid{grid-template-columns:1fr}
+  .nr-two{grid-template-columns:1fr}
+  .pi-tabs{gap:16px;overflow-x:auto}
+  .ai-feedback{flex-wrap:wrap;justify-content:flex-start}
+}
+@media(max-width:480px){
+  .cat-bar{padding:10px 14px;gap:8px}
+  .cat-logo .logo{height:20px}
+  .cat-search{height:34px;font-size:13px;padding:0 10px}
+  .cat-catalog{padding:7px 12px;font-size:13px}
+  .cat-exit{padding:7px 14px;font-size:13px}
+  .cat-ico{font-size:17px}
+  .cat-icons{gap:10px}
+
+  .pi-name{font-size:24px}
+  .pi-price{font-size:20px}
+  .rev-score-big{font-size:48px}
+}
