@@ -248,12 +248,17 @@
             .then(function(r){ return r.json(); })
             .then(function(list){
                 var listEl=document.getElementById('reviewList');
+                // Если сейчас активен фильтр по аспекту — новые отзывы должны его уважать,
+                // иначе «Загрузить ещё» высыпает все 30 не по теме поверх отфильтрованных.
+                var activeFilterBtn=document.querySelector('.ai-tag.active');
+                var activeIds=activeFilterBtn ? (activeFilterBtn.dataset.ids||'').split(',').map(function(x){return x.trim();}).filter(Boolean) : null;
                 list.forEach(function(r){
                     var item=document.createElement('div');
                     item.className='review-item';
                     item.id='review-' + r.review_id;
                     item.dataset.id=r.review_id;
                     item.innerHTML=reviewItemHtml(r.reviewer_name, r.rating, r.pros, r.cons, r.text);
+                    if(activeIds && activeIds.indexOf(String(r.review_id))<0){ item.style.display='none'; }
                     listEl.appendChild(item);
                 });
                 reviewsLoaded += list.length;
@@ -285,11 +290,17 @@
         document.getElementById('filterName').textContent=btn.dataset.aspect;
         bar.hidden=false;
         if(firstVisible) firstVisible.scrollIntoView({behavior:'smooth',block:'center'});
+        // Пока фильтр активен, «Загрузить ещё» может только натащить отзывов не по теме
+        // (они и так корректно скрываются, но сама кнопка тогда бессмысленна) — прячем её
+        var loadMoreBtn=document.getElementById('loadMoreBtn');
+        if(loadMoreBtn) loadMoreBtn.hidden=true;
     }
     function resetFilter(){
         document.querySelectorAll('.ai-tag').forEach(function(b){b.classList.remove('active');});
         document.querySelectorAll('#reviewList .review-item').forEach(function(item){item.style.display='';});
         document.getElementById('filterBar').hidden=true;
+        var loadMoreBtn=document.getElementById('loadMoreBtn');
+        if(loadMoreBtn) loadMoreBtn.hidden=false;
     }
 
     // === Лайк/дизлайк сводки: один раз за сессию, пишет в БД через FastAPI ===
