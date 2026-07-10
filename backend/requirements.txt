@@ -1,0 +1,42 @@
+# === Core data processing ===
+pandas
+numpy
+openpyxl
+
+# === Text cleaning ===
+emoji
+thefuzz
+
+# === LLM & API ===
+openai
+tenacity
+httpx
+fastapi
+uvicorn
+pydantic
+
+# === Pipeline & config ===
+pydantic
+pydantic-settings
+python-dotenv
+tqdm
+loguru
+
+# === DB ===
+pymysql
+sqlalchemy
+cryptography
+
+# === API ===
+fastapi
+uvicorn[standard]
+
+# === Visualization ===
+matplotlib
+seaborn
+
+# === Dev ===
+pytest==8.3.3
+pytest-asyncio==0.24.0
+ruff==0.6.9                # линтер + форматтер
+mypy==1.11.2

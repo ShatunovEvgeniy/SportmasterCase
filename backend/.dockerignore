@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+data/raw/*.xlsx
+artifacts/*.json
+*.log
+.git
+.idea/
+.pytest_cache/

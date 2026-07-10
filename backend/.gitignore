@@ -1,0 +1,12 @@
+/.idea
+/.idea
+/.env
+/.venv
+/src/__pycache__
+/src/config/__pycache__
+/src/llm/__pycache__
+/src/models/__pycache__
+/src/pipeline/__pycache__
+/src/preprocessing/__pycache__
+/src/scripts/__pycache__
+/src/db/__pycache__
