@@ -44,7 +44,8 @@ def run_single_product_pipeline(model_id: int, max_reviews: int = 250, on_progre
 
     t0 = time.time()
     db = Database()
-    llm_client = YandexGPTClient()
+    map_client = YandexGPTClient(settings.yandex_map_model)
+    reduce_client = YandexGPTClient(settings.yandex_reduce_model)
 
     # 1. Получаем отзывы из БД
     report("Загружаем отзывы из базы данных…", 15)
@@ -102,7 +103,7 @@ def run_single_product_pipeline(model_id: int, max_reviews: int = 250, on_progre
 
     from tqdm import tqdm
     for i, chunk in enumerate(tqdm(chunks, desc="MAP")):
-        result = process_chunk_map(chunk, llm_client)
+        result = process_chunk_map(chunk, map_client)
         map_results.append(result)
         chunk_pct = 35 + int(35 * (i + 1) / max(len(chunks), 1))
         report(f"Изучаем отзывы покупателей — часть {i + 1} из {len(chunks)}…", chunk_pct)
@@ -119,7 +120,7 @@ def run_single_product_pipeline(model_id: int, max_reviews: int = 250, on_progre
 
     # 6. REDUCE этап
     report("Пишем итоговую сводку…", 85)
-    final_summary = process_single_reduce(summary, llm_client)
+    final_summary = process_single_reduce(summary, reduce_client)
 
     # 7. Сохранение в БД
     report("Сохраняем результат…", 95)

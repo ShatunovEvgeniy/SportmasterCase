@@ -25,7 +25,7 @@ def run_reduce_stage(model_id: int = None):
 
     t0 = time.time()
     db = Database()
-    llm_client = YandexGPTClient()
+    llm_client = YandexGPTClient(settings.yandex_reduce_model)
 
     # Получаем summaries из БД
     if model_id is not None:

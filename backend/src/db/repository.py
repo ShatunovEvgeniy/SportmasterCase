@@ -88,6 +88,45 @@ class Database:
             session.commit()
             return new_rating
 
+    def should_regenerate(self, model_id: int, growth_threshold: float = 0.2) -> bool:
+        """
+        Решает, пора ли пересчитывать AI-сводку: да, если отзывов накопилось хотя бы
+        на growth_threshold (по умолчанию 20%) больше, чем было на момент последней
+        генерации. Пока сводки не было ни разу (last_generation_review_count is None) —
+        считаем, что генерировать нужно всегда, порог тут ни при чём.
+
+        Это защищает от перегенерации по одному новому отзыву на товарах с сотнями
+        отзывов — раньше каждый POST /reviews запускал полный (платный) LLM-пайплайн.
+        """
+        with self._session() as session:
+            product = session.get(Product, model_id)
+            if product is None:
+                return True
+
+            last_count = product.last_generation_review_count
+            if not last_count:
+                return True
+
+            current_count = (
+                session.query(ReviewORM).filter(ReviewORM.model_id == model_id).count()
+            )
+            return current_count >= last_count * (1 + growth_threshold)
+
+    def reviews_until_next_regeneration(self, model_id: int, growth_threshold: float = 0.2) -> int:
+        """Сколько ещё новых отзывов нужно, чтобы пересечь порог пересчёта (для UI)."""
+        import math
+
+        with self._session() as session:
+            product = session.get(Product, model_id)
+            if product is None or not product.last_generation_review_count:
+                return 0
+
+            current_count = (
+                session.query(ReviewORM).filter(ReviewORM.model_id == model_id).count()
+            )
+            need = math.ceil(product.last_generation_review_count * (1 + growth_threshold))
+            return max(0, need - current_count)
+
     def get_reviews(self, model_id: int) -> List[ReviewRecord]:
         with self._session() as session:
             rows = (
@@ -182,6 +221,12 @@ class Database:
                 aspect = aspect_map.get(("con", name))
                 if aspect is not None:
                     product.final_disadvantages.append(aspect)
+
+            # Запоминаем, сколько отзывов было на момент этой генерации — от этого
+            # отсчитывается порог для следующего пересчёта (см. should_regenerate)
+            product.last_generation_review_count = (
+                session.query(ReviewORM).filter(ReviewORM.model_id == summary.model_id).count()
+            )
 
             session.commit()
 

@@ -365,9 +365,7 @@
         var submitBtn=document.querySelector('.nr-submit');
         submitBtn.disabled = true;
         hint.style.display='none';
-        progress.hidden=false;
-        progressFill.style.width='5%';
-        progressStage.textContent='Сохраняем отзыв…';
+        progress.hidden=true;
 
         // Отзыв в списке показываем сразу — не дожидаясь пересчёта сводки
         var displayName=name || 'Гость';
@@ -388,7 +386,21 @@
             body: JSON.stringify({text: savedText, rating: savedRating, pros: pros, cons: cons, name: name})
         })
         .then(function(r){ if(!r.ok) throw new Error('API error ' + r.status); return r.json(); })
-        .then(function(data){ pollJob(data.job_id, progress, progressFill, progressStage, hint, submitBtn); })
+        .then(function(data){
+            if(data.will_regenerate){
+                // Порог +20% пройден — реально пересчитываем сводку, есть за чем следить прогресс-баром
+                progress.hidden=false;
+                progressFill.style.width='5%';
+                progressStage.textContent='Сохраняем отзыв…';
+                pollJob(data.job_id, progress, progressFill, progressStage, hint, submitBtn);
+            } else {
+                // Порог не набран — сводку не пересчитывали, прогресс-бар нечего показывать
+                if(data.summary) updateRatingDisplay(data.summary.rating, data.summary.review_count);
+                hint.style.display='block';
+                hint.textContent=data.message || 'Отзыв сохранён.';
+                submitBtn.disabled=false;
+            }
+        })
         .catch(function(err){
             console.error(err);
             progress.hidden=true;

@@ -173,13 +173,36 @@ async def add_review_and_regenerate(
         new_rating = db.recalculate_rating(model_id)
         logger.info(f"⭐ Рейтинг model_id={model_id} пересчитан: {new_rating:.2f}")
 
-        # 4. Запускаем пайплайн в фоне, отдаём job_id для опроса прогресса
         job_id = str(uuid.uuid4())
-        JOBS[job_id] = {"status": "running", "stage": "Отзыв сохранён…", "progress": 5, "error": None, "summary": None}
-        thread = threading.Thread(target=_run_pipeline_job, args=(job_id, model_id), daemon=True)
-        thread.start()
 
-        return JobStartResponse(job_id=job_id)
+        # 4. AI-сводку пересчитываем не на каждый отзыв (это платный вызов LLM), а
+        # только когда отзывов накопилось на 20%+ больше, чем было на прошлой генерации.
+        # Если не пересчитываем — job уже "done" синхронно, фронту незачем крутить
+        # прогресс-бар и опрашивать /api/jobs: вся нужная информация уже в этом ответе.
+        if db.should_regenerate(model_id):
+            JOBS[job_id] = {"status": "running", "stage": "Отзыв сохранён…", "progress": 5, "error": None, "summary": None}
+            thread = threading.Thread(target=_run_pipeline_job, args=(job_id, model_id), daemon=True)
+            thread.start()
+            return JobStartResponse(job_id=job_id, will_regenerate=True)
+
+        remaining = db.reviews_until_next_regeneration(model_id)
+        unchanged_summary = db.get_summary(model_id)
+        message = f"Отзыв сохранён. Сводка обновится, когда наберётся ещё {remaining} нов. отзыв(ов) (порог +20%)."
+        JOBS[job_id] = {
+            "status": "done",
+            "stage": message,
+            "progress": 100,
+            "error": None,
+            "summary": summary_to_response(unchanged_summary) if unchanged_summary else None,
+        }
+        logger.info(f"⏭️ model_id={model_id}: порог +20% не достигнут, пересчёт сводки пропущен (нужно ещё {remaining})")
+
+        return JobStartResponse(
+            job_id=job_id,
+            will_regenerate=False,
+            message=message,
+            summary=summary_to_response(unchanged_summary) if unchanged_summary else None,
+        )
 
     except HTTPException:
         raise

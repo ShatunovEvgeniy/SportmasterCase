@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS products (
     last_review_id INT NULL,
     ai_summary TEXT NULL,
     ai_summary_likes INT DEFAULT 0 NOT NULL,
-    ai_summary_dislikes INT DEFAULT 0 NOT NULL
+    ai_summary_dislikes INT DEFAULT 0 NOT NULL,
+    last_generation_review_count INT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Таблица отзывов

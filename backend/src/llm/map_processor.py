@@ -44,13 +44,14 @@ def process_chunk_map(chunk: Chunk, llm_client: YandexGPTClient) -> MapResult:
 
 if __name__ == "__main__":
     from src.models.schemas import Review
+    from src.config.settings import settings
 
     dummy_chunk = Chunk(
         model_id=999, product_type="кеды", rating=4.0,
         reviews=[Review(review_id=1, text="Общее: Отличные кеды. Достоинства: Легкие. Недостатки: Быстро порвались.")]
     )
     try:
-        client = YandexGPTClient()
+        client = YandexGPTClient(settings.yandex_map_model)
         res = process_chunk_map(dummy_chunk, client)
         print(f"Map Result for model {res.model_id}: pros={res.pros}, cons={res.cons}")
     except Exception as e:
